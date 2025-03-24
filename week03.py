@@ -1,10 +1,22 @@
+#def move_zeros(a_list):
+#    zero_index = 0
+#    for index, n in enumerate(a_list):
+#        if n != 0:
+#            a_list[zero_index] = n
+#            if zero_index != index:
+#                a_list[index] = 0
+#            zero_index += 1
+#    return(a_list)
+
+
 def move_zeros(a_list):
     zero_index = 0
-    for index, n in enumerate(a_list):
+    for i in range(len(a_list)):
+        n = a_list[i]
         if n != 0:
             a_list[zero_index] = n
-            if zero_index != index:
-                a_list[index] = 0
+            if zero_index != i:
+                a_list[i] = 0
             zero_index += 1
     return(a_list)
 
