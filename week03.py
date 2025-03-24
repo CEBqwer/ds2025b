@@ -1,26 +1,7 @@
-#def move_zeros(a_list):
-#    zero_index = 0
-#    for index, n in enumerate(a_list):
-#        if n != 0:
-#            a_list[zero_index] = n
-#            if zero_index != index:
-#                a_list[index] = 0
-#            zero_index += 1
-#    return(a_list)
+groups = ['HOT', 'Seventeen', 'Black Pink', 'NJZ']
+ratings = [1, 2, 4, 3]
 
-
-def move_zeros(a_list):
-    zero_index = 0
-    for i in range(len(a_list)):
-        n = a_list[i]
-        if n != 0:
-            a_list[zero_index] = n
-            if zero_index != i:
-                a_list[i] = 0
-            zero_index += 1
-    return(a_list)
-
-
-a_list = [8, 0, 3, 0, 12]
-move_zeros(a_list)
-print(a_list)
+# list 결합에 zip 함수 사용
+# 결합하려는 list 원소의 수가 맞아야 제대로 동작
+group_rating = list(zip(groups, ratings))
+print(group_rating)
