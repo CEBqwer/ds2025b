@@ -1,7 +1,19 @@
-groups = ['HOT', 'Seventeen', 'Black Pink', 'NJZ']
-ratings = [1, 2, 4, 3]
+def duplicate_city(cities):
+    result = list()
+    s = set()
 
-# list 결합에 zip 함수 사용
-# 결합하려는 list 원소의 수가 맞아야 제대로 동작
-group_rating = list(zip(groups, ratings))
-print(group_rating)
+    for city in cities:
+        l1 = len(s)
+        s.add(city)
+        l2 = len(s)
+        if l1 == l2: # set에 중복된 값 들어감(길이변동 X)
+            result.append(city)
+    return result
+
+
+cities = ['Incheon', 'Incheon', 'Incheon', 'Gimpo', 'Seoul', 'Seoul']
+cities.append('Anyang')
+cities.append('Seoul')
+
+print(cities)
+print(set(duplicate_city(cities)))
