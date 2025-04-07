@@ -28,7 +28,9 @@ class Stack:
 
 s1 = Stack()
 print(s1.pop())
-s1.push("자료구조")
-s1.push("데이터베이스")
-print(s1.pop())
-print(s1.pop())
+s1.push("Data Structure")
+s1.push("Database")
+# print(s1.pop())
+# print(s1.pop())
+for i in range(3):
+    print(s1.pop())
