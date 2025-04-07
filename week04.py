@@ -18,21 +18,26 @@ class LinkedList:
         current.link = Node(data)
 
     def remove(self, target):
+        current = self.head
         if self.head.data == target: # 지우려는 게 head 노드일 경우
             self.head = self.head.link
+            # 이렇게만 지우면 링크드 리스트에 삭제된 노드가 계속 연결돼있음 << 삭제된 노드의 링크를 None으로 바꿔줘야.
+            current.link = None
             return
-        current = self.head
         previous = None
         while current:
             if current.data == target:
                 previous.link = current.link
+                # 이렇게만 지우면 링크드 리스트에 삭제된 노드가 계속 연결돼있음
+                current.link = None
+                break
             previous = current
             current = current.link
 
     def search(self, target):
         current = self.head
         # while current.link: # << 마지막 왔을 때 링크가 None이기 때문에, 마지막 노드 때는 안 돌음... -> 마지막 노드를 못 찾는다
-        while current:
+        while current: # 노드가 있을 때까지 돈다.
             if current.data == target:
                 return f"{target}을(를) 찾았습니다."
             else:
