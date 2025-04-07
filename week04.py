@@ -31,7 +31,8 @@ class LinkedList:
 
     def search(self, target):
         current = self.head
-        while current.link:
+        # while current.link: # << 마지막 왔을 때 링크가 None이기 때문에, 마지막 노드 때는 안 돌음... -> 마지막 노드를 못 찾는다
+        while current:
             if current.data == target:
                 return f"{target}을(를) 찾았습니다."
             else:
@@ -55,9 +56,9 @@ ll.append(-9)
 
 print(ll)
 print(ll.search(100))
-print(ll.search(10))
+print(ll.search(-9)) # << -9는 링크드 리스트 안에 존재하지 않습니다.
 
 ll.remove(0) # 없는 노드일 경우
 ll.remove(8) # 첫 번째 노드일 경우
-ll.remove(10)
+ll.remove(-9)
 print(ll)
