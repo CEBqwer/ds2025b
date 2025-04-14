@@ -10,6 +10,7 @@ class Queue:
         self.rear = None
         self.size = 0
 
+
     def enqueue(self, data):
         self.size = self.size + 1
         node = Node(data)
@@ -29,6 +30,7 @@ class Queue:
         self.front = self.front.link
         if self.front is None:
             self.rear = None
+        temp.link = None
         return temp.data
 
 
