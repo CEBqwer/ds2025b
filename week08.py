@@ -1,3 +1,27 @@
+def pre_order(node): # 재귀함수 사용
+    if node is None:
+        return
+    print(node.data, end = '-')
+    pre_order(node.left)
+    pre_order(node.right)
+
+
+def in_order(node):
+    if node is None:
+        return
+    in_order(node.left)
+    print(node.data, end='-')
+    in_order(node.right)
+
+
+def post_order(node):
+    if node is None:
+        return
+    post_order(node.left)
+    post_order(node.right)
+    print(node.data, end='-')
+
+
 class TreeNode:
 	def __init__(self):
 		self.left = None
@@ -29,3 +53,10 @@ node3.left = node6
 
 print(node6.data)
 print(node1.right.left.data)
+
+pre_order(node1)
+print()
+in_order(node1)
+print()
+post_order(node1)
+print()
