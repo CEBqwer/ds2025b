@@ -25,7 +25,7 @@ def post_order(node):
     if node:
         post_order(node.left)
         post_order(node.right)
-        print(node.date, end='-')
+        print(node.data, end='-')
 
 
 def insert(root, value):
@@ -51,6 +51,22 @@ def insert(root, value):
     return root
 
 
+def search(number):
+    search_value = number
+    current = root
+    while True:
+        if search_value == current.data:
+            return True
+        elif search_value < current.data:
+            if current.left is None:
+                return False
+            current = current.left
+        else:
+            if current.right is None:
+                return False
+            current = current.right
+
+
 if __name__ == "__main__":
     numbers = [10, 15, 8, 3, 9]
     root = None
@@ -61,6 +77,13 @@ if __name__ == "__main__":
     print("BST 구성 완료")
 
     post_order(root)
+    print()
+
+    number = int(input("찾고자 하는 값: "))
+    if search(number):
+        print(f"{number}을(를) 찾았습니다")
+    else:
+        print(f"{number}이(가) 존재하지 않습니다")
 
     # find_number = int(input())
     #
