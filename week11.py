@@ -17,5 +17,12 @@ def dfs(g, i, visited):
         if g[i][j] == 1 and not visited[j]: # 두 노드가 연결돼있고 한 번도 방문하지 않았으면.
             dfs(g, j, visited)
 
+
+def bfs(g, i, visited): # 큐 사용
+    pass
+
 visited_dfs = [0 for _ in range(len(graph))] # 0이 8개인 리스트
+visited_bfs = [0 for _ in range(len(graph))] # 0이 8개인 리스트
 dfs(graph, 0, visited_dfs)
+print()
+bfs(graph, 6, visited_bfs)
