@@ -1,42 +1,31 @@
-from collections import deque
+def is_connected(temp, v) -> bool:
+    pass
 
-graph = [
-    [0, 1, 1, 0, 0, 0, 0, 0],
-    [1, 0, 0, 1, 0, 0, 0, 0],
-    [1, 0, 0, 1, 0, 0, 0, 0],
-    [0, 1, 1, 0, 1, 1, 1, 0],
-    [0, 0, 0, 1, 0, 1, 0, 0],
-    [0, 0, 0, 1, 1, 0, 0, 0],
-    [0, 0, 0, 1, 0, 0, 0, 1],
-    [0, 0, 0, 0, 0, 0, 1, 0]
-]
+v, e = map(int, input().split()) # 정점, 간선 개수 입력 (6 9)
+edges = list()
 
-# 깊이 우선 탐색, 재귀 함수
-def dfs(g, i, visited):
-    visited[i] = 1 # 방문 처리
-    print(chr(ord('A') + i), end = ' ') # ord fn: 아스키 코드 값 반환
-    for j in range(len(g)):
-        if g[i][j] == 1 and not visited[j]: # 두 노드가 연결돼있고 한 번도 방문하지 않았으면.
-            dfs(g, j, visited)
+# 춘천 0, 서울 1, 속초 2, 대전 3, 광주 4, 부산 5
+for _ in range(e):
+    a, b, cost = map(int, input().split())
+    edges.append((cost, a, b))
 
+print(edges)
+edges.sort(reverse = True) # 내림차순
+print(edges)
 
-# 너비 우선 탐색, deque(양방향 큐, append, popleft)
-def bfs(g, i, visited):
-    queue = deque([i])
-    visited[i] = True
-    while queue: # queue에 원소가 남아있으면 방문해야 할 게 남았다는 뜻
-        # print(visited)
-        i = queue.popleft() # == dequeue
-        print(chr(ord('A') + i), end=' ')
-        for j in range(len(g)):
-            if g[i][j] == 1 and not visited[j]:
-                queue.append(j)
-                visited[j] = True
+selected_edges = edges[:] # edges 복사본
+total_cost = sum(cost for cost, a, b in edges)
 
+for cost, a, b in enumerate(edges):
+    # 간선을 제거해도 도시의 연결이 안 끊기는지 확인 -> 제거
+    temp_edges = [(c, x, y) for c, x, y in selected_edges if not (c==cost and x==a and y==b)]
+    if is_connected(temp_edges, v):
+        selected_edges = temp_edges
+        total_cost = total_cost - cost
+        print(f"간선 ({a}------{b}, 가중치 : {cost}) 제거, 현 시점 총 가중치 : {total_cost}")
+    else:
+        print(f"간선 ({a}------{b}, 가중치 : {cost}) 유지(제거하면 연결 끊어짐)")
 
-visited_dfs = [0 for _ in range(len(graph))] # 0이 8개인 리스트
-# visited_bfs = [0 for _ in range(len(graph))] # 0이 8개인 리스트
-visited_bfs = [False for _ in range(len(graph))] # 0이 8개인 리스트
-dfs(graph, 0, visited_dfs)
-print()
-bfs(graph, 6, visited_bfs)
+print(f"\n최소 신장 트리의 총 가중치 : {total_cost}")
+for cost, a, b in sorted(selected_edges): # 간선이 v-1개 나오면 됨
+    print(f"{a}------{b}, {cost}")
